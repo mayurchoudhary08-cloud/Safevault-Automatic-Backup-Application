@@ -1,0 +1,3 @@
+# SafeVault - Automatic Backup & Restore
+# Minimum third-party dependencies (all other functionality uses Python standard library)
+customtkinter>=6.0.0

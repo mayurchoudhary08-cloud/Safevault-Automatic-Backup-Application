@@ -1,0 +1,37 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Runtime databases and logs
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.log
+
+# Generated backups and restore output
+SafeVault_Backups/
+SafeVault_Demo_Source/
+SafeVault_Demo_Backups/
+SafeVault_Restored_*/
+*.partial/
+.partial_*/
+
+# Test and coverage artifacts
+.coverage
+htmlcov/
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
