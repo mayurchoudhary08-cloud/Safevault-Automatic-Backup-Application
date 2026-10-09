@@ -138,7 +138,13 @@ def is_safe_relative_path(rel_path_str: str) -> bool:
     if os.path.isabs(rel_path_str):
         return False
 
-    # Check for drive specification (e.g. C: or C:/)
+    import re
+
+    # Check for drive specification (e.g. C: or C:/) across all platforms (POSIX & Windows)
+    if re.match(r"^[a-zA-Z]:", rel_path_str):
+        return False
+
+    # Check for drive specification via Path object
     path_obj = Path(rel_path_str)
     if path_obj.is_absolute() or path_obj.drive:
         return False
