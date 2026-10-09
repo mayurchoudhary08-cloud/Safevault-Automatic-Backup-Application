@@ -1,5 +1,10 @@
 # SafeVault — Automatic Backup & Restore Desktop Application
 
+[![SafeVault CI & Matrix Testing](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/actions/workflows/ci.yml/badge.svg)](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/actions/workflows/ci.yml)
+[![Windows Desktop Release Build](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/actions/workflows/windows-build.yml/badge.svg)](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/actions/workflows/windows-build.yml)
+[![CodeQL Security Analysis](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/actions/workflows/codeql.yml/badge.svg)](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/actions/workflows/codeql.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application)](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/releases/tag/v1.0.0)
+
 A reliable, practical Operating Systems laboratory and viva project built with Python 3, CustomTkinter, and SQLite. SafeVault performs real local file management, multithreaded chunked streaming backups, cryptographic SHA-256 integrity verification, safe isolated file restorations, and cooperative schedule automation.
 
 ---
@@ -105,39 +110,79 @@ SafeVault/
 
 ---
 
-## 6. Installation & Prerequisites
+## 6. Getting Started & Installation
 
-### Prerequisites
-- Windows 10 or 11.
-- Python 3.10, 3.11, 3.12, or 3.13 installed and added to PATH.
+SafeVault provides multiple convenient ways to run depending on your environment:
 
-### Installation Steps
+### Method A: Standalone Windows Application (Recommended — No Python Required)
+
+The fastest and easiest way to use SafeVault on Windows:
+
+1. Download **`SafeVault-Windows-x64.zip`** from the [GitHub Releases page](https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/releases/tag/v1.0.0) or from the latest GitHub Actions artifacts.
+2. Extract the ZIP archive anywhere on your computer (e.g. `C:\SafeVault` or your Desktop).
+3. Open the extracted folder and double-click **`SafeVault.exe`**.
+
+> [!NOTE]
+> **Windows SmartScreen / Antivirus Prompt:**
+> Because this is an open-source academic college project without an expensive commercial code-signing certificate, Windows Defender SmartScreen may display a blue warning screen stating *"Windows protected your PC"*.
+> - Click **More info**.
+> - Click **Run anyway**.
+> SafeVault contains zero malware or telemetry, is 100% open-source, and does not require administrative elevation.
+
+> [!TIP]
+> **Application Data Storage in Packaged Mode:**
+> When running `SafeVault.exe`, the application stores its database and logs safely in `%LOCALAPPDATA%\SafeVault` (e.g., `C:\Users\<User>\AppData\Local\SafeVault\safevault.db` and `safevault.log`). This ensures full write permissions and prevents permission crashes even if the executable is placed in read-only directories or on external drives.
+
+---
+
+### Method B: Running from Python Source Code
+
+Recommended for development, code review, and viva examination:
+
+#### Prerequisites
+- Windows 10/11, Linux, or macOS.
+- Python 3.10, 3.11, 3.12, or 3.13 installed.
+
+#### Setup Steps
 1. Clone the repository and navigate into the project directory:
    ```powershell
    git clone https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application.git
    cd Safevault-Automatic-Backup-Application
    ```
-2. Install the required dependencies:
+2. Install the lightweight dependencies:
    ```powershell
    py -m pip install -r requirements.txt
    ```
    *(or `python -m pip install -r requirements.txt`)*
 
+3. Launch the application:
+   - **Using batch script:** Double-click `run.bat` or execute `run.bat` in CMD/PowerShell.
+   - **Using Python:** Run `py main.py` or `python main.py`.
+
+In development mode, `safevault.db` and `safevault.log` are stored directly beside `main.py` if present, or automatically in `%LOCALAPPDATA%\SafeVault`.
+
 ---
 
-## 7. How to Run
+### Method C: Pre-built Python Wheel Package
 
-### Option A: Using the Windows batch script
-Double-click `run.bat` or run:
-```cmd
-run.bat
+You can install SafeVault directly as a Python wheel:
+
+```bash
+# Download safevault_backup-1.0.0-py3-none-any.whl from GitHub Releases
+pip install safevault_backup-1.0.0-py3-none-any.whl
+safevault
 ```
 
-### Option B: Using Python directly
-```powershell
-py main.py
+---
+
+### Method D: Docker / GitHub Container Registry (Headless / Container CI)
+
+A containerized distribution is published to the GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/mayurchoudhary08-cloud/safevault-automatic-backup-application:1.0.0
+docker run -it ghcr.io/mayurchoudhary08-cloud/safevault-automatic-backup-application:1.0.0
 ```
-*(or `python main.py`)*
 
 ---
 

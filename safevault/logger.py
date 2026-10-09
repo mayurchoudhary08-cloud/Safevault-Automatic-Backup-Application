@@ -19,7 +19,12 @@ _LOGGER = logging.getLogger("SafeVault")
 def setup_logger(log_file_path: Optional[str | Path] = None) -> logging.Logger:
     """Configure standard logging output to file and console."""
     if log_file_path is None:
-        log_file_path = Path.cwd() / "safevault.log"
+        local_log = Path.cwd() / "safevault.log"
+        if local_log.exists():
+            log_file_path = local_log
+        else:
+            from safevault.paths import get_default_data_dir
+            log_file_path = get_default_data_dir() / "safevault.log"
     else:
         log_file_path = Path(log_file_path)
 

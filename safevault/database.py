@@ -22,8 +22,13 @@ class Database:
 
     def __init__(self, db_path: str | Path | None = None) -> None:
         if db_path is None:
-            # Default to safevault.db in current working directory or user's application directory
-            self.db_path = Path.cwd() / DEFAULT_DB_FILENAME
+            # Check if local safevault.db exists in working directory (portable/dev mode)
+            local_db = Path.cwd() / DEFAULT_DB_FILENAME
+            if local_db.exists():
+                self.db_path = local_db
+            else:
+                from safevault.paths import get_default_data_dir
+                self.db_path = get_default_data_dir() / DEFAULT_DB_FILENAME
         else:
             self.db_path = Path(db_path)
 

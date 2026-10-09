@@ -2,6 +2,7 @@ name: Windows Desktop Release Build
 
 on:
   push:
+    branches: [ "main" ]
     tags: [ "v*" ]
   workflow_dispatch:
 
@@ -34,16 +35,17 @@ jobs:
 
       - name: Package standalone zip archive
         run: |
-          Compress-Archive -Path "dist/SafeVault/*" -DestinationPath "SafeVault-Windows-Portable.zip"
+          Compress-Archive -Path "dist/SafeVault" -DestinationPath "SafeVault-Windows-x64.zip" -Force
 
-      - name: Upload Windows Build Artifact
+      - name: Upload Windows Standalone Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SafeVault-Windows-Portable
-          path: SafeVault-Windows-Portable.zip
+          name: SafeVault-Windows-x64
+          path: SafeVault-Windows-x64.zip
+          retention-days: 90
 
       - name: Attach to GitHub Release (if tag)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: SafeVault-Windows-Portable.zip
+          files: SafeVault-Windows-x64.zip

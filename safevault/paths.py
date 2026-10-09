@@ -189,3 +189,30 @@ def get_unique_destination_dir(parent_dir: Path, base_name: str) -> Path:
         if not candidate.exists():
             return candidate
         counter += 1
+
+
+def get_default_data_dir() -> Path:
+    """Return a safe, writable per-user application data directory for SafeVault.
+
+    On Windows: %LOCALAPPDATA%/SafeVault (e.g. C:/Users/<User>/AppData/Local/SafeVault)
+    On POSIX/Linux: ~/.safevault
+
+    Ensures that packaged executables run safely from any directory without permission errors.
+    """
+    if os.name == "nt":
+        base_env = os.environ.get("LOCALAPPDATA")
+        if base_env:
+            data_dir = Path(base_env) / "SafeVault"
+        else:
+            data_dir = Path.home() / "AppData" / "Local" / "SafeVault"
+    else:
+        data_dir = Path.home() / ".safevault"
+
+    try:
+        data_dir.mkdir(parents=True, exist_ok=True)
+    except Exception:
+        # Fallback to current user's home directory
+        data_dir = Path.home() / ".safevault"
+        data_dir.mkdir(parents=True, exist_ok=True)
+
+    return data_dir

@@ -43,8 +43,10 @@ def main():
 
     from safevault.app import SafeVaultApp
 
-    # Database file placed beside main.py
-    db_path = project_root / "safevault.db"
+    # Use local safevault.db if present beside main.py (dev/portable mode),
+    # otherwise defaults to safe per-user local app data directory (%LOCALAPPDATA%/SafeVault)
+    local_db = project_root / "safevault.db"
+    db_path = local_db if local_db.exists() else None
 
     app = SafeVaultApp(db_path=db_path)
     app.run()
