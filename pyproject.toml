@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "safevault-backup"
+version = "1.0.0"
+description = "SafeVault — Automatic Backup & Restore Desktop Application"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Mayur Choudhary", email = "mayurchoudhary08-cloud@users.noreply.github.com" }
+]
+license = "MIT"
+keywords = ["backup", "restore", "file-manager", "sha256", "gui", "desktop", "operating-systems"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Archiving :: Backup",
+    "Topic :: Desktop Environment",
+]
+dependencies = [
+    "customtkinter>=6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application"
+Repository = "https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application"
+Issues = "https://github.com/mayurchoudhary08-cloud/Safevault-Automatic-Backup-Application/issues"
+
+[project.scripts]
+safevault = "safevault.app:main"
+
+[tool.setuptools.packages.find]
+include = ["safevault*", "tests*"]

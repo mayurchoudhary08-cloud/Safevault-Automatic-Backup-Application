@@ -379,3 +379,9 @@ class SafeVaultApp:
     def run(self):
         """Start the Tkinter event loop."""
         self.root.mainloop()
+
+
+def main():
+    """CLI entry point for safevault package."""
+    app = SafeVaultApp()
+    app.run()
